@@ -10,4 +10,4 @@ proj.linux/
 proj.tizen/
 proj.win10/
 proj.win32/
-proj.win8.1-universal/
+proj.win8.1-universal/.DS_Store

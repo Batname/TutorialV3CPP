@@ -51,6 +51,50 @@ bool AppDelegate::applicationDidFinishLaunching() {
 
     // set FPS. the default value is 1.0/60 if you don't call this
     director->setAnimationInterval(1.0f / 60);
+    
+    auto fileUtils = FileUtils::getInstance();
+    auto screenSize = glview->getFrameSize();
+    std::vector<std::string> resDirOrders;
+    
+    // check with assets device requires
+    if (2048 == screenSize.width && 2048 == screenSize.height)
+    {
+        resDirOrders.push_back("ipadhd");
+        resDirOrders.push_back("ipad");
+        resDirOrders.push_back("iphonehd5");
+        resDirOrders.push_back("iphonehd");
+        resDirOrders.push_back("iphone");
+        
+        glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
+    } else if (1024 == screenSize.width && 1024 == screenSize.height) {
+
+        resDirOrders.push_back("ipad");
+        resDirOrders.push_back("iphonehd5");
+        resDirOrders.push_back("iphonehd");
+        resDirOrders.push_back("iphone");
+        
+        glview->setDesignResolutionSize(1024, 768, ResolutionPolicy::NO_BORDER);
+    } else if (1136 == screenSize.width && 1136 == screenSize.height) {
+        
+        resDirOrders.push_back("iphonehd5");
+        resDirOrders.push_back("iphonehd");
+        resDirOrders.push_back("iphone");
+        
+        glview->setDesignResolutionSize(1135, 640, ResolutionPolicy::NO_BORDER);
+    } else if (960 == screenSize.width && 960 == screenSize.height) {
+        
+        resDirOrders.push_back("iphonehd");
+        resDirOrders.push_back("iphone");
+        
+        glview->setDesignResolutionSize(960, 640, ResolutionPolicy::NO_BORDER);
+    } else {
+        
+        resDirOrders.push_back("iphone");
+        
+        glview->setDesignResolutionSize(480, 320, ResolutionPolicy::NO_BORDER);
+    }
+    
+    fileUtils->setSearchPaths(resDirOrders);
 
     // Set the design resolution
     glview->setDesignResolutionSize(designResolutionSize.width, designResolutionSize.height, ResolutionPolicy::NO_BORDER);
