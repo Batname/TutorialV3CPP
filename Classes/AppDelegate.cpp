@@ -1,6 +1,8 @@
 #include "AppDelegate.h"
 #include "HelloWorldScene.h"
 
+#include <iostream>
+
 USING_NS_CC;
 
 static cocos2d::Size designResolutionSize = cocos2d::Size(480, 320);
@@ -56,8 +58,10 @@ bool AppDelegate::applicationDidFinishLaunching() {
     auto screenSize = glview->getFrameSize();
     std::vector<std::string> resDirOrders;
     
+    std::cout << screenSize.width << " " << screenSize.height << std::endl;
+    
     // check with assets device requires
-    if (2048 == screenSize.width && 2048 == screenSize.height)
+    if (2048 <= screenSize.width && 2048 <= screenSize.height)
     {
         resDirOrders.push_back("ipadhd");
         resDirOrders.push_back("ipad");
@@ -66,7 +70,7 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back("iphone");
         
         glview->setDesignResolutionSize(2048, 1536, ResolutionPolicy::NO_BORDER);
-    } else if (1024 == screenSize.width && 1024 == screenSize.height) {
+    } else if (1024 <= screenSize.width && 1024 <= screenSize.height) {
 
         resDirOrders.push_back("ipad");
         resDirOrders.push_back("iphonehd5");
@@ -74,14 +78,14 @@ bool AppDelegate::applicationDidFinishLaunching() {
         resDirOrders.push_back("iphone");
         
         glview->setDesignResolutionSize(1024, 768, ResolutionPolicy::NO_BORDER);
-    } else if (1136 == screenSize.width && 1136 == screenSize.height) {
+    } else if (1136 <= screenSize.width && 1136 <= screenSize.height) {
         
         resDirOrders.push_back("iphonehd5");
         resDirOrders.push_back("iphonehd");
         resDirOrders.push_back("iphone");
         
         glview->setDesignResolutionSize(1135, 640, ResolutionPolicy::NO_BORDER);
-    } else if (960 == screenSize.width && 960 == screenSize.height) {
+    } else if (960 <= screenSize.width && 960 <= screenSize.height) {
         
         resDirOrders.push_back("iphonehd");
         resDirOrders.push_back("iphone");
