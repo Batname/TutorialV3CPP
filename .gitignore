@@ -1,0 +1,13 @@
+./build
+./bin
+bin/debug
+bin
+cocos2d
+proj.android-studio/
+proj.android/
+proj.ios_mac/
+proj.linux/
+proj.tizen/
+proj.win10/
+proj.win32/
+proj.win8.1-universal/
