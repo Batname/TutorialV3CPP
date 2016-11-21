@@ -36,15 +36,16 @@ bool HelloWorld::init()
     
     addChild(mySprite);
     
-    ccBezierConfig bezier;
-    bezier.controlPoint_1 = Point(0, visibleSize.height/2);
-    bezier.controlPoint_2 = Point(300, -visibleSize.height/2);
-    bezier.endPosition = Point(200, 100);
     
-    auto action = BezierBy::create(3, bezier);
+    char filaname[] = "audio/Collide.wav";
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect(filaname);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(filaname);
     
-    mySprite->runAction(action); 
+
+    auto action = SkewBy::create(4.0f, 70.0f, 50.0f);
     
+    mySprite->runAction(action);
+
     return true;
 }
 
