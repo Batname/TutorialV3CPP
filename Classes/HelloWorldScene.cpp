@@ -37,7 +37,8 @@ bool HelloWorld::init()
     addChild(mySprite);
     
 //    auto action = MoveTo::create(3, Point(100, 300));
-    auto action = JumpBy::create(3, Point(100, 0), 50, 3);
+//    auto action = JumpBy::create(3, Point(100, 0), 50, 3);
+    auto action = JumpTo::create(3.0f, Point(100, 30), 50.0f, 6);
     
     mySprite->runAction(action);
     
