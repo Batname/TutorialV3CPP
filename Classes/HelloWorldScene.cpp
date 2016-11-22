@@ -37,16 +37,33 @@ bool HelloWorld::init()
     addChild(mySprite);
     
     
-    char filaname[] = "audio/Collide.wav";
-    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect(filaname);
-    CocosDenshion::SimpleAudioEngine::getInstance()->playEffect(filaname);
+    const char backgroundAudio[] = "audio/background.mp3";
+    CocosDenshion::SimpleAudioEngine::getInstance()->preloadEffect(backgroundAudio);
+    CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic(backgroundAudio, true);
     
-
-    auto action = SkewBy::create(4.0f, 70.0f, 50.0f);
+    auto listener = EventListenerTouchOneByOne::create();
+    listener->setSwallowTouches(true);
+    listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
+//    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+//    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
     
-    mySprite->runAction(action);
-
+    _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
+    
     return true;
+}
+
+bool HelloWorld::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
+{
+    float x = touch->getLocation().x;
+    float y = touch->getLocation().y;
+    CCLOG("On touch beging x = %f, y = %f", x, y);
+    return true;
+}
+
+
+void HelloWorld::stopEffect(float dt)
+{
+    CocosDenshion::SimpleAudioEngine::getInstance()->stopEffect(soundInt);
 }
 
 
