@@ -44,8 +44,8 @@ bool HelloWorld::init()
     auto listener = EventListenerTouchOneByOne::create();
     listener->setSwallowTouches(true);
     listener->onTouchBegan = CC_CALLBACK_2(HelloWorld::onTouchBegan, this);
-//    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
-//    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
+    listener->onTouchMoved = CC_CALLBACK_2(HelloWorld::onTouchMoved, this);
+    listener->onTouchEnded = CC_CALLBACK_2(HelloWorld::onTouchEnded, this);
     
     _eventDispatcher->addEventListenerWithSceneGraphPriority(listener, this);
     
@@ -59,6 +59,21 @@ bool HelloWorld::onTouchBegan(cocos2d::Touch * touch, cocos2d::Event * event)
     CCLOG("On touch beging x = %f, y = %f", x, y);
     return true;
 }
+
+void HelloWorld::onTouchMoved(cocos2d::Touch * touch, cocos2d::Event * event)
+{
+    float x = touch->getLocation().x;
+    float y = touch->getLocation().y;
+    CCLOG("On touch moved x = %f, y = %f", x, y);
+}
+
+void HelloWorld::onTouchEnded(cocos2d::Touch * touch, cocos2d::Event * event)
+{
+    float x = touch->getLocation().x;
+    float y = touch->getLocation().y;
+    CCLOG("On touch ended x = %f, y = %f", x, y);
+}
+
 
 
 void HelloWorld::stopEffect(float dt)
